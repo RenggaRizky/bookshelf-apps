@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
+    <title>Bookshelf Apps</title>
+  </head>
+  <body>
+    <header>
+      <img src="assets/logo.svg" alt="Logo Bookshelf Apps" id="logo" />
+    </header>
+
+    <main>
+      <section id="inputSection">
+        <div class="container" id="imageWrapper">
+          <img src="assets/main-img.svg" alt="main image" />
+        </div>
+        <div class="container" id="inputBooks">
+          <div class="card">
+            <h2>Masukan Buku Baru</h2>
+            <form id="inputBookForm">
+              <input type="text" name="inputBookTitle" id="inputBookTitle" placeholder="Judul" required />
+              <input type="text" name="inputAuthorBook" id="inputAuthorBook" placeholder="Penulis" required />
+              <input type="number" name="inputBookYear" id="inputBookYear" placeholder="Tahun" required />
+              <div class="input-checkbox">
+                <input type="checkbox" name="inputBookIsComplete" id="inputBookIsComplete" />
+                <label for="inputBookIsComplete">Buku telah selesai dibaca</label>
+              </div>
+              <input type="submit" value="Masukan Buku" />
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="resultSection">
+        <div class="container" id="incompleteBookshelfList">
+          <div class="card bookshelf">
+            <h2>Belum Dibaca</h2>
+            <div class="bookshelf-wrapper" id="uncompletedBooks">
+              <!-- <div class="book-list">
+                <div class="book-item">
+                  <h3 class="title">Laskar Pelangi</h3>
+                  <p class="author">popeye si pelaut</p>
+                  <p class="year">20xx</p>
+                </div>
+                <div class="action">
+                  <button class="btn complete">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="btn delete">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="container" id="completeBookshelfList">
+          <div class="card bookshelf">
+            <h2>Selesai Dibaca</h2>
+            <div class="bookshelf-wrapper" id="completedBooks">
+              <!-- <div class="book-list">
+                <div class="book-item">
+                  <h3 class="title">Mockingjay : The Hunger Games sasa asasa asas</h3>
+                  <p class="author">naknolnay</p>
+                  <p class="year">20xx</p>
+                </div>
+                <div class="action">
+                  <button class="btn undo">
+                    <i class="fas fa-undo"></i>
+                  </button>
+                  <button class="btn delete">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+
+    <script src="js/dom.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
