@@ -166,7 +166,7 @@ input[type="submit"] {
 
 .book-item {
   flex: 75%;
-  margin-right: 12px;
+  margin-right: 20px;
 }
 
 .book-item > .title,
@@ -194,64 +194,36 @@ input[type="submit"] {
 
 .action > button {
   cursor: pointer;
-  width: 100%;
-  height: 4vh;
+  /* width: 100%;
+  height: 3vh; */
+  width: 65px;
+  height: 33px;
 }
 
-/* .complete {
-  background: url("../assets/check-solid.svg");
-  background-color: #7cb9e8;
+.action > .complete {
+  background: url("../assets/check-button.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
-  border-radius: 12px;
+  cursor: pointer;
   margin-right: 10px;
-} */
+}
 
-.action > .complete,
 .action > .undo {
-  background-color: #7cb9e8;
+  background: url("../assets/undo-button.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
-  border-radius: 12px;
+  cursor: pointer;
   margin-right: 10px;
-}
-
-.action > .complete:hover,
-.action > .undo:hover {
-  background-color: #7cb9e8c4;
-}
-
-.action > .complete > i,
-.action > .undo > i {
-  color: white;
-  font-size: 0.875rem;
 }
 
 .action > .delete {
-  background-color: white;
-  border: medium solid #7cb9e8;
-  border-radius: 12px;
-}
-
-.action > .delete:hover {
-  border: medium solid #7cb9e8c4;
-}
-
-.action > .delete > i {
-  color: #7cb9e8;
-  font-size: 1.125rem;
-}
-
-.action > .delete > i {
-  color: #7cb9e8c4;
-}
-
-.check-button {
-  background: url("../assets/check-solid.svg");
+  background: url("../assets/delete-button.svg");
+  background-repeat: no-repeat;
   background-size: contain;
-  width: 40px;
-  height: 40px;
-  margin-left: auto;
-  cursor: pointer;
   border: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 769px) {
@@ -326,6 +298,7 @@ input[type="submit"] {
     padding: 10px;
   }
 
+  /* Main */
   .bookshelf {
     width: 100%;
   }
@@ -337,14 +310,6 @@ input[type="submit"] {
   .bookshelf-wrapper {
     height: 46vh;
   }
-
-  /* #incompleteBookshelfList,
-  #completeBookshelfList {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100vh;
-  } */
 
   .book-list {
     flex-direction: column;

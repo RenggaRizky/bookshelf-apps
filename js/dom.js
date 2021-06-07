@@ -14,19 +14,37 @@
 
 const UNCOMPLETED_LIST_BOOK = "uncompletedBooks";
 const COMPLETED_LIST_BOOK = "completedBooks";
+const BOOK_ITEM_ID = "bookItemid";
 
 function inputBook() {
   const uncompletedListBook = document.getElementById(UNCOMPLETED_LIST_BOOK);
+  const completedListBook = document.getElementById(COMPLETED_LIST_BOOK);
 
   const bookTitle = document.getElementById("inputBookTitle").value;
   const authorBook = document.getElementById("inputAuthorBook").value;
   const yearBook = document.getElementById("inputBookYear").value;
+
   console.log(`Judul : ${bookTitle}`);
   console.log(`Penulis : ${authorBook}`);
   console.log(`Tahun : ${yearBook}`);
 
-  const uncompletedBooks = makeItemBook(bookTitle, authorBook, yearBook);
-  uncompletedListBook.append(uncompletedBooks);
+  const uncompletedBooks = makeItemBook(bookTitle, authorBook, yearBook, false);
+  const completedBooks = makeItemBook(bookTitle, authorBook, yearBook, true);
+  const check = document.getElementById("checkboxForComplete");
+  let bookshelfObject;
+
+  if (check.checked == true) {
+    completedListBook.append(completedBooks);
+    bookshelfObject = composeBookshelfObject(bookTitle, authorBook, yearBook, true);
+    completedBooks[BOOK_ITEM_ID] = bookshelfObject.id;
+  } else {
+    uncompletedListBook.append(uncompletedBooks);
+    bookshelfObject = composeBookshelfObject(bookTitle, authorBook, yearBook, false);
+    uncompletedBooks[BOOK_ITEM_ID] = bookshelfObject.id;
+  }
+
+  bookshelf.push(bookshelfObject);
+  updateDataStorage();
 }
 
 // membuat elemen
@@ -65,32 +83,20 @@ function makeItemBook(title, author, year, isCompleted) {
 }
 
 /**
- *  FUNCTION MEMBUAT BUTTON
- *  param buttonClass = memberi nama class pada setap button
- *  param eventListener = memberi listener pada setiap button
- */
-// function createButton(buttonClass, eventListener) {
-//   const button = document.createElement("button");
-//   button.classList.add(buttonClass);
-//   button.addEventListener("click", function (event) {
-//     // isi function ini yaitu, jalankan function tertentu pada saat pemanggilan method
-//     eventListener(event);
-//   });
-//   return button;
-// }
-
-/**
  *  MEMINDAHKAN  BUKU DARI RAK "BELUM DIBACA" KE "SUDAH DIBACA"
  */
 function addBookToCompleted(bookElement) {
   //ambil text / value dari element
   const taskTitle = bookElement.querySelector("#uncompletedBooks > .book-list > .book-item > h3.title").innerText;
-  console.log(taskTitle);
   const taskAuthor = bookElement.querySelector("#uncompletedBooks > .book-list > .book-item > p.author").innerText;
   const taskYear = bookElement.querySelector("#uncompletedBooks > .book-list > .book-item > p.year").innerText;
 
   //panggil method  makeItemBook() lalu isi parameter dengan text / value yang sudah diambil
   const completedBook = makeItemBook(taskTitle, taskAuthor, taskYear, true);
+
+  const book = findBook(bookElement[BOOK_ITEM_ID]);
+  book.isCompleted = true;
+  completedBook[BOOK_ITEM_ID] = book.id;
 
   //panggil element dengan id COMPLETED_LIST_BOOK
   const listCompleted = document.getElementById(COMPLETED_LIST_BOOK);
@@ -99,6 +105,8 @@ function addBookToCompleted(bookElement) {
   listCompleted.append(completedBook);
 
   bookElement.remove();
+
+  updateDataStorage();
 }
 
 /**
@@ -110,62 +118,102 @@ function returnBookToUncompleted(bookElement) {
   const taskYear = bookElement.querySelector("#completedBooks > .book-list > .book-item > p.year").innerText;
 
   const uncompletedBook = makeItemBook(taskTitle, taskAuthor, taskYear, false);
+
+  const book = findBook(bookElement[BOOK_ITEM_ID]);
+  book.isCompleted = false;
+  uncompletedBook[BOOK_ITEM_ID] = book.id;
+
   const listUncompleted = document.getElementById(UNCOMPLETED_LIST_BOOK);
   listUncompleted.append(uncompletedBook);
   bookElement.remove();
+
+  updateDataStorage();
 }
 
 /**
  *  MENGHAPUS BUKU PADA RAK
  */
 function removeBookFromBookshelf(bookElement) {
+  const bookPosition = findBookIndex(bookElement[BOOK_ITEM_ID]);
+  bookshelf.splice(bookPosition, 1);
+
   bookElement.remove();
+  updateDataStorage();
+}
+
+/**
+ *  DASAR PEMBUATAN BUTTON
+ */
+function createButton(buttonTypeClass, eventListener) {
+  const button = document.createElement("button");
+  button.classList.add(buttonTypeClass);
+  button.addEventListener("click", function (event) {
+    eventListener(event);
+  });
+
+  return button;
 }
 
 /**
  *  MEMBUAT CHECK BUTTON
  */
-// function createCheckButton() {
-//   return createButton("complete", function (event) {
-//     addBookToCompleted(event.target.parentElement.parentElement);
-//   });
-// }
-
-/**
- *  MEMBUAT CHECK BUTTON
- */
 function createCheckButton() {
-  const button = document.createElement("button");
-  button.classList.add("complete");
-  button.innerHTML = '<i class="fas fa-check"></i>';
-  button.addEventListener("click", function (event) {
+  return createButton("complete", function (event) {
     addBookToCompleted(event.target.parentElement.parentElement);
   });
-  return button;
 }
 
 /**
  *  MEMBUAT DELETE BUTTON
  */
 function createDeleteButton() {
-  const button = document.createElement("button");
-  button.classList.add("delete");
-  button.innerHTML = '<i class="far fa-trash-alt"></i>';
-  button.addEventListener("click", function (event) {
+  return createButton("delete", function (event) {
     removeBookFromBookshelf(event.target.parentElement.parentElement);
   });
-  return button;
 }
 
 /**
  *  MEMBUAT UNDO BUTTON
  */
 function createUndoButton() {
-  const button = document.createElement("button");
-  button.classList.add("undo");
-  button.innerHTML = '<i class="fas fa-undo"></i>';
-  button.addEventListener("click", function (event) {
+  return createButton("undo", function (event) {
     returnBookToUncompleted(event.target.parentElement.parentElement);
   });
-  return button;
 }
+
+/**
+ *  MEMBUAT CHECK BUTTON
+ */
+// function createCheckButton() {
+//   const button = document.createElement("button");
+//   button.classList.add("complete");
+//   button.addEventListener("click", function (event) {
+//     addBookToCompleted(event.target.parentElement.parentElement);
+//   });
+
+//   return button;
+// }
+
+/**
+ *  MEMBUAT DELETE BUTTON
+ */
+// function createDeleteButton() {
+//   const button = document.createElement("button");
+//   button.classList.add("delete");
+//   button.addEventListener("click", function (event) {
+//     removeBookFromBookshelf(event.target.parentElement.parentElement);
+//   });
+//   return button;
+// }
+
+/**
+ *  MEMBUAT UNDO BUTTON
+ */
+// function createUndoButton() {
+//   const button = document.createElement("button");
+//   button.classList.add("undo");
+//   button.addEventListener("click", function (event) {
+//     returnBookToUncompleted(event.target.parentElement.parentElement);
+//   });
+//   return button;
+// }
