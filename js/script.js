@@ -11,7 +11,24 @@ document.addEventListener("DOMContentLoaded", function () {
   submitForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    //menambahkan buku ke buku list
+    //menambahkan buku ke rak buku
     inputBook();
   });
+
+  /**
+      Jika web storage ada pada browser, jalankan method loadDataFromStorage()
+   */
+  if (isStorageExist()) {
+    loadDataFromStorage();
+  }
+});
+
+// custom event ondatasaved
+document.addEventListener("ondatasaved", function () {
+  console.log("Data berhasil disimpan");
+});
+
+//custom event ondataloaded,
+document.addEventListener("ondataloaded", function () {
+  refreshDataFromBookshelf();
 });

@@ -66,6 +66,10 @@ header > img {
 }
 
 /* main */
+main {
+  margin-bottom: 100px;
+}
+
 #inputSection {
   height: 90vh;
 }
@@ -194,8 +198,6 @@ input[type="submit"] {
 
 .action > button {
   cursor: pointer;
-  /* width: 100%;
-  height: 3vh; */
   width: 65px;
   height: 33px;
 }
@@ -224,6 +226,17 @@ input[type="submit"] {
   background-size: contain;
   border: none;
   cursor: pointer;
+}
+
+/* footer */
+footer {
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.fa-copyright {
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 769px) {
@@ -278,6 +291,7 @@ input[type="submit"] {
     display: none;
   }
 
+  /* Main */
   #inputBooks > h2 {
     margin-bottom: 30px;
   }
@@ -298,7 +312,6 @@ input[type="submit"] {
     padding: 10px;
   }
 
-  /* Main */
   .bookshelf {
     width: 100%;
   }

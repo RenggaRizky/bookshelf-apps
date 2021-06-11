@@ -9,11 +9,13 @@
     <title>Bookshelf Apps</title>
   </head>
   <body>
+    <!-- header logo -->
     <header>
       <img src="assets/logo.svg" alt="Logo Bookshelf Apps" id="logo" />
     </header>
 
     <main>
+      <!-- input buku -->
       <section id="inputSection">
         <div class="container" id="imageWrapper">
           <img src="assets/main-img.svg" alt="main image" />
@@ -35,29 +37,31 @@
         </div>
       </section>
 
+      <!-- rak buku -->
       <section id="resultSection">
+        <!-- rak buku untuk buku yang belum dibaca -->
         <div class="container" id="incompleteBookshelfList">
           <div class="card bookshelf">
             <h2>Belum Dibaca</h2>
             <div class="bookshelf-wrapper" id="uncompletedBooks">
               <!-- <div class="book-list">
                 <div class="book-item">
-                  <h3 class="title">Laskar Pelangi</h3>
-                  <p class="author">popeye si pelaut</p>
-                  <p class="year">20xx</p>
+                  <h3 class="title"></h3>
+                  <p class="author"></p>
+                  <p class="year"></p>
                 </div>
                 <div class="action">
                   <button class="btn complete">
-                    <i class="fas fa-check"></i>
                   </button>
                   <button class="btn delete">
-                    <i class="far fa-trash-alt"></i>
                   </button>
                 </div>
               </div> -->
             </div>
           </div>
         </div>
+
+        <!-- rak buku untuk buku yang selesai dibaca -->
         <div class="container" id="completeBookshelfList">
           <div class="card bookshelf">
             <h2>Selesai Dibaca</h2>
@@ -82,7 +86,7 @@
         </div>
       </section>
     </main>
-    <footer></footer>
+    <footer><i class="far fa-copyright"></i>2021 bookshelf apps. All Right Reserved</footer>
 
     <script src="js/data.js"></script>
     <script src="js/dom.js"></script>
