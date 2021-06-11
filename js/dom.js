@@ -81,7 +81,7 @@ function makeItemBook(title, author, year, isCompleted) {
 }
 
 /**
- *  MEMINDAHKAN  BUKU DARI RAK "BELUM DIBACA" KE "SUDAH DIBACA"
+ *  Memindahkan buku dari rak "Belum dibaca" ke "Sudah dibaca"
  */
 function addBookToCompleted(bookElement) {
   //ambil text atau value dari elemen
@@ -112,7 +112,7 @@ function addBookToCompleted(bookElement) {
 }
 
 /**
- *  MENGEMBALIKAN BUKU DARI RAK "SUDAH DIBACA" KE "BELUM DIBACA"
+ *  Mengembalikan buku dari rak "Sudah Dibaca" ke "Belum Dibaca"
  */
 function returnBookToUncompleted(bookElement) {
   //ambil text atau value dari elemen
@@ -140,7 +140,7 @@ function returnBookToUncompleted(bookElement) {
 }
 
 /**
- *  MENGHAPUS BUKU PADA RAK
+ *  menghapus buku pada rak
  */
 function removeBookFromBookshelf(bookElement) {
   // buat konfirmasi, apakah buku akan dihapus atau tidak
@@ -157,7 +157,7 @@ function removeBookFromBookshelf(bookElement) {
 }
 
 /**
- *  DASAR PEMBUATAN BUTTON
+ *  dasar pembuatan button
  */
 function createButton(buttonTypeClass, eventListener) {
   // buat elemen button
@@ -176,7 +176,7 @@ function createButton(buttonTypeClass, eventListener) {
 }
 
 /**
- *  MEMBUAT CHECK BUTTON
+ *  membuat check button
  */
 function createCheckButton() {
   // mengembalikan fungsi createButton, paramaternya yaitu class complete dan jalankan suatu fungsi
@@ -187,7 +187,7 @@ function createCheckButton() {
 }
 
 /**
- *  MEMBUAT DELETE BUTTON
+ *  memuat delete button
  */
 function createDeleteButton() {
   // mengembalikan fungsi createButton, paramaternya yaitu class delete dan jalankan suatu fungsi
@@ -198,7 +198,7 @@ function createDeleteButton() {
 }
 
 /**
- *  MEMBUAT UNDO BUTTON
+ *  Membuat undo button
  */
 function createUndoButton() {
   // mengembalikan fungsi createButton, paramaternya yaitu class delete dan jalankan suatu fungsi
